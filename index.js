@@ -1,10 +1,25 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const nodeOs = require("os");
 const nodePty = require("node-pty");
+const fs = require("fs");
+
+let configData;
+
+try {
+  configData = fs.readFileSync("config.txt", "utf8");
+  if (configData === "zsh:true") {
+    configData = true;
+  }
+} catch (e) {
+  console.log("Error:", e.stack);
+}
 
 let shell;
 if (nodeOs.platform() === "win32") {
   shell = "powershell.exe";
+} else if (configData === true) {
+  shell = "zsh";
+  console.log("Using ZSH instead of BASH!");
 } else {
   shell = "bash";
 }
