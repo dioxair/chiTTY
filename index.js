@@ -39,6 +39,7 @@ const createWindow = () => {
     rows: 24,
     cwd: process.env.HOME,
     env: process.env,
+    cursorBlink: true,
   });
 
   nodePtyShellThing.onData(function (data) {
