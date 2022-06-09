@@ -31,6 +31,14 @@ const createWindow = () => {
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "index.html"));
   mainWindow.menuBarVisible = false;
+
+  let nodePtyShellThing = nodePty.spawn(shell, [], {
+    name: "xterm-color",
+    cols: 80,
+    rows: 24,
+    cwd: process.env.HOME,
+    env: process.env,
+  });
 };
 
 // This method will be called when Electron has finished
