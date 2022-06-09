@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const nodeOs = require("os");
 const nodePty = require("node-pty");
 
@@ -23,8 +23,9 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      devTools: false,
+      devTools: true,
       nodeIntegration: true,
+      contextIsolation: false,
     },
   });
 
@@ -38,6 +39,14 @@ const createWindow = () => {
     rows: 24,
     cwd: process.env.HOME,
     env: process.env,
+  });
+
+  nodePtyShellThing.onData(function (data) {
+    mainWindow.webContents.send("tty.incData", data);
+  });
+
+  ipcMain.on("tty.toTerm", function (event, data) {
+    nodePtyShellThing.write(data);
   });
 };
 
