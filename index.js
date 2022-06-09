@@ -1,4 +1,7 @@
 const { app, BrowserWindow } = require("electron");
+const nodeOs = require("os");
+const nodePty = require("node-pty");
+
 const path = require("path");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
