@@ -18,6 +18,14 @@ let tty = new Terminal({
 
 tty.open(document.getElementById("tty"));
 
+tty.write("Welcome to chiTTY!\n");
+
+tty.write("You can configure chiTTY to use ZSH in the config.txt file!\n");
+
+tty.write(
+  'The file can only contain "zsh:true" or "zsh:false", or else it will just default to Bash.'
+);
+
 tty.onData((t) => {
   ipc.send("tty.toTerm", t);
 });
