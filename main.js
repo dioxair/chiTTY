@@ -1,5 +1,14 @@
 const ipc = require("electron").ipcRenderer;
 
+const delay = (ms) => new Promise((res) => setTimeout(res, ms)); // await.sleep in js when
+
+window.onload = window.onresize = function () {
+  fit = new FitAddon.FitAddon();
+  tty.loadAddon(fit);
+
+  fit.fit();
+};
+
 let tty = new Terminal({
   convertEol: true,
   fontFamily: `'JetBrains Mono', monospace`,
@@ -7,12 +16,7 @@ let tty = new Terminal({
   rendererType: "dom",
 });
 
-fit = new FitAddon.FitAddon();
-tty.loadAddon(fit);
-
 tty.open(document.getElementById("tty"));
-
-fit.fit();
 
 tty.onData((t) => {
   ipc.send("tty.toTerm", t);
