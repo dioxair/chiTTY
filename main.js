@@ -2,12 +2,16 @@ const ipc = require("electron").ipcRenderer;
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms)); // await.sleep in js when
 
-window.onload = window.onresize = function () {
-  fit = new FitAddon.FitAddon();
-  tty.loadAddon(fit);
+window.addEventListener(
+  "resize",
+  function (event) {
+    fit = new FitAddon.FitAddon();
+    tty.loadAddon(fit);
 
-  fit.fit();
-};
+    fit.fit();
+  },
+  true
+);
 
 let tty = new Terminal({
   convertEol: true,
