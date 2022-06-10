@@ -24,7 +24,11 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "chitty"
+            "options": {
+              "maintainer": "Samuel Olagunju",
+              "homepage": "https://github.com/samuelolagunju/chiTTY",
+              "name": "chiTTY"
+            }
           }
         },
         {
@@ -35,11 +39,23 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "options": {
+              "maintainer": "Samuel Olagunju",
+              "homepage": "https://github.com/samuelolagunju/chiTTY",
+              "name": "chiTTY"
+            }
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
-          "config": {}
+          "config": {
+            "options": {
+              "maintainer": "Samuel Olagunju",
+              "homepage": "https://github.com/samuelolagunju/chiTTY",
+              "name": "chiTTY"
+            }
+          }
         }
       ]
     }
